@@ -1,0 +1,25 @@
+<form #form="ngForm" (submit)="addTask()">
+  <input type="text" [formControl]="addTaskControl">
+  <button type="submit">Add Task</button>
+</form>
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Task</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let task of tasks$ | async">
+      <td>{{ task.id }}</td>
+      <td>{{ task.title }}</td>
+      <td>{{ task.completed }}</td>
+      <td>
+        <button [routerLink]="[task.id]">Go To Task</button>
+        <button (click)="deleteTask(task.id)">Remove</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
